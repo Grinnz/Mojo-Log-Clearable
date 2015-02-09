@@ -1,12 +1,12 @@
 package Mojo::Log::Clearable;
 
 use Mojo::Base 'Mojo::Log';
-use Class::Method::Modifiers;
+use Class::Method::Modifiers ();
 
 our $VERSION = '0.002';
 
 sub clear_handle { delete shift->{handle} };
-before 'path' => sub { $_[0]->clear_handle if @_ > 1 };
+Class::Method::Modifiers::before 'path' => sub { $_[0]->clear_handle if @_ > 1 };
 
 =head1 NAME
 
@@ -16,18 +16,23 @@ Mojo::Log::Clearable - Mojo::Log with clearable log handle
 
  use Mojo::Log::Clearable;
  my $log = Mojo::Log::Clearable->new(path => $path1);
- $log->info($message);
+ $log->info($message); # Logged to $path1
  $log->path($path2);
- $log->debug($message);
- $log->path(undef); # Log to STDERR
- $log->warn($message);
+ $log->debug($message); # Logged to $path2
+ $log->path(undef);
+ $log->warn($message); # Logged to STDERR
+ 
+ # Reset filehandle after logrotate (if logrotate sends SIGUSR1)
+ $SIG{USR1} = sub { $log->clear_handle };
 
 =head1 DESCRIPTION
 
-L<Mojo::Log> is a simple logger class. It holds a filehandle once it is used to
-write to a log, which must be cleared to log to a different path.
+L<Mojo::Log> is a simple logger class. It holds a filehandle once it writes to
+a log, and changing L</"path"> does not open a new filehandle for logging.
 L<Mojo::Log::Clearable> subclasses L<Mojo::Log> to provide a L</"clear_handle">
-method and to automatically call it when setting L</"path">.
+method and to automatically call it when setting L</"path"> so the logging
+handle is reset to the new path. The L</"clear_handle"> method can also be used
+to reset the logging handle after logrotate.
 
 =head1 EVENTS
 
@@ -43,7 +48,7 @@ implements the following new ones.
  my $path = $log->path;
  $log     = $log->path('/var/log/mojo.log');
 
-Log file path used by L</"handle">. Clears L</"handle"> when set.
+Log file path used by L<Mojo::Log/"handle">. Resets the handle when set.
 
 =head1 METHODS
 
@@ -54,7 +59,7 @@ the following new ones.
 
  $log->clear_handle;
 
-Clears L</"handle"> attribute, it will be set from the default when next
+Clears L<Mojo::Log/"handle"> attribute, it will be set from the default when next
 accessed.
 
 =head1 AUTHOR
