@@ -3,7 +3,7 @@ package Mojo::Log::Clearable;
 use Mojo::Base 'Mojo::Log';
 use Class::Method::Modifiers;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 sub clear_handle { delete shift->{handle} };
 before 'path' => sub { $_[0]->clear_handle if @_ > 1 };
