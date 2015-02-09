@@ -15,10 +15,12 @@ Mojo::Log::Clearable - Mojo::Log with clearable log handle
 =head1 SYNOPSIS
 
  use Mojo::Log::Clearable;
- my $logger = Mojo::Log::Clearable->new(path => $path1);
- $logger->info($message);
- $logger->path($path2);
- $logger->info($message);
+ my $log = Mojo::Log::Clearable->new(path => $path1);
+ $log->info($message);
+ $log->path($path2);
+ $log->debug($message);
+ $log->path(undef); # Log to STDERR
+ $log->warn($message);
 
 =head1 DESCRIPTION
 
