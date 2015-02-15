@@ -22,7 +22,7 @@ Mojo::Log::Clearable - Mojo::Log with clearable log handle
  $log->path(undef);
  $log->warn($message); # Logged to STDERR
  
- # Reset filehandle after logrotate (if logrotate sends SIGUSR1)
+ # Reopen filehandle after logrotate (if logrotate sends SIGUSR1)
  $SIG{USR1} = sub { $log->clear_handle };
 
 =head1 DESCRIPTION
@@ -31,8 +31,8 @@ L<Mojo::Log> is a simple logger class. It holds a filehandle once it writes to
 a log, and changing L</"path"> does not open a new filehandle for logging.
 L<Mojo::Log::Clearable> subclasses L<Mojo::Log> to provide a L</"clear_handle">
 method and to automatically call it when setting L</"path"> so the logging
-handle is reset to the new path. The L</"clear_handle"> method can also be used
-to reset the logging handle after logrotate.
+handle is reopened at the new path. The L</"clear_handle"> method can also be
+used to reopen the logging handle after logrotate.
 
 =head1 EVENTS
 
@@ -48,7 +48,7 @@ implements the following new ones.
  my $path = $log->path;
  $log     = $log->path('/var/log/mojo.log');
 
-Log file path used by L<Mojo::Log/"handle">. Resets the handle when set.
+Log file path used by L<Mojo::Log/"handle">. Reopens the handle when set.
 
 =head1 METHODS
 
@@ -59,8 +59,8 @@ the following new ones.
 
  $log->clear_handle;
 
-Clears L<Mojo::Log/"handle"> attribute, it will be set from the default when next
-accessed.
+Clears L<Mojo::Log/"handle"> attribute, it will be reopened from the L</"path">
+attribute when next accessed.
 
 =head1 AUTHOR
 
