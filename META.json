@@ -1,0 +1,62 @@
+{
+   "abstract" : "Mojo::Log with clearable log handle",
+   "author" : [
+      "Dan Book <dbook@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 5.036, CPAN::Meta::Converter version 2.150001",
+   "license" : [
+      "artistic_2"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : 2
+   },
+   "name" : "Mojo-Log-Clearable",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "0"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Dist::Zilla::PluginBundle::Author::DBOOK" : "0.003"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Class::Method::Modifiers" : "2.11",
+            "Mojolicious" : "5.77",
+            "perl" : "5.010001"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "File::Spec::Functions" : "0",
+            "File::Temp" : "0",
+            "Test::More" : "0.88"
+         }
+      }
+   },
+   "provides" : {
+      "Mojo::Log::Clearable" : {
+         "file" : "lib/Mojo/Log/Clearable.pm",
+         "version" : "0.003"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/Grinnz/Mojo-Log-Clearable/issues"
+      },
+      "homepage" : "https://github.com/Grinnz/Mojo-Log-Clearable",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/Grinnz/Mojo-Log-Clearable.git",
+         "web" : "https://github.com/Grinnz/Mojo-Log-Clearable"
+      }
+   },
+   "version" : "0.003"
+}
+
