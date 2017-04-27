@@ -72,7 +72,8 @@
          "type" : "git",
          "url" : "https://github.com/Grinnz/Mojo-Log-Clearable.git",
          "web" : "https://github.com/Grinnz/Mojo-Log-Clearable"
-      }
+      },
+      "x_IRC" : "irc://irc.perl.org/#mojo"
    },
    "version" : "0.003",
    "x_Dist_Zilla" : {
@@ -154,6 +155,11 @@
          {
             "class" : "Dist::Zilla::Plugin::MetaNoIndex",
             "name" : "@Author::DBOOK/MetaNoIndex",
+            "version" : "6.009"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::MetaResources",
+            "name" : "@Author::DBOOK/MetaResources",
             "version" : "6.009"
          },
          {
