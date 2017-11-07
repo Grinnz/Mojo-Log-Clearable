@@ -3,13 +3,13 @@ use Mojo::Base -strict;
 use Test::More;
 use File::Spec::Functions 'catfile';
 use File::Temp 'tempdir';
-use Mojo::Log::Clearable;
+use Mojo::Log;
 use Mojo::Util 'decode';
 
 # Logging to file
 my $dir = tempdir CLEANUP => 1;
 my $wrongpath = catfile $dir, 'wrong.log';
-my $log = Mojo::Log::Clearable->new(level => 'error', path => $wrongpath);
+my $log = Mojo::Log->with_roles('+Clearable')->new(level => 'error', path => $wrongpath);
 $log->error('wrong file');
 my $path = catfile $dir, 'test.log';
 $log->path($path);
