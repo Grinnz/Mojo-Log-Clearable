@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+1.000     2017-11-06 21:27:23 EST
   - Add Mojo::Log::Role::Clearable, and move the implementation to there.
   - Mojo::Log::Clearable is now a simple Mojo::Log subclass that has the new
     role applied.
