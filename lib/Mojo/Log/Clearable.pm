@@ -3,7 +3,7 @@ package Mojo::Log::Clearable;
 use Mojo::Base 'Mojo::Log';
 use Role::Tiny::With;
 
-our $VERSION = '1.001';
+our $VERSION = '1.002';
 
 with 'Mojo::Log::Role::Clearable';
 

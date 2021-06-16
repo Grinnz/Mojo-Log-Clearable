@@ -2,7 +2,7 @@ package Mojo::Log::Role::Clearable;
 
 use Role::Tiny;
 
-our $VERSION = '1.001';
+our $VERSION = '1.002';
 
 requires 'handle', 'path';
 sub clear_handle { delete shift->{handle} }
